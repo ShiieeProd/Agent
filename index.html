@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Valorant Match Overlay</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="overlay">
+    <!-- HEADER -->
+    <div class="header">
+      <div class="team-logo-left">
+        <img id="teamLogoLeft" src="" alt="Left Team">
+        <div class="diamond-container" id="diamondLeft"></div>
+      </div>
+
+      <div class="match-center">
+        <span class="team-name" id="teamLeft"></span>
+        <span class="team-role def" id="roleLeft">DEF</span>
+        <img src="images/vs.png" alt="VS Icon" class="vs-icon">
+        <span class="team-role atk" id="roleRight">ATK</span>
+        <span class="team-name" id="teamRight"></span>
+      </div>
+      
+      <div class="team-logo-right">
+        <div class="diamond-container" id="diamondRight"></div>
+        <img id="teamLogoRight" src="" alt="Right Team">
+      </div>
+    </div>
+
+    <!-- LINEUPS -->
+    <div class="lineup">
+      <div class="side left" id="leftLineup"></div>
+
+      <div class="map-section">
+        <img id="mapImage" src="" alt="Map" class="map-image" />
+        <div id="mapName" class="map-name"></div>
+      </div>
+
+      <div class="side right" id="rightLineup"></div>
+    </div>
+
+    <!-- BUTTONS -->
+    <div class="card-buttons" id="cardButtons" aria-hidden="false"></div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

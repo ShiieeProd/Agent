@@ -1,0 +1,302 @@
+/* RESET */
+
+:root {
+  --Header:#281427;
+  --Lower:#3a1c38;
+  --Agent-Name-DEF:#e52bd0;
+  --Agent-Name-ATK:#e52bd0;
+}
+
+@font-face {
+  font-family: "Roboto-Regular";
+  src: url("./fonts/Roboto-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Mako-Bold";
+  src: url("./fonts/Mako-Bold.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: transparent;
+  color: white;
+  font-family: "Mako-Bold";
+}
+
+.overlay {
+  width: 1920px;
+  height: 1080px;
+  position: relative;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--Header);
+  height: 70px;
+  width: 100%;
+  position: relative;
+}
+
+.header::before,
+.header::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  height: 3px;
+  width: 50%;
+}
+.header::before { left: 0; background: #00e0ff; }
+.header::after { right: 0; background: #ff4747; }
+
+/* TEAM LOGOS */
+.team-logo-left img,
+.team-logo-right img {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  opacity: 0.9;
+  margin-right: 6px;
+
+  /* Add shadow */
+  filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.7));
+}
+
+.team-logo-left { margin-left: 20px; }
+.team-logo-right { margin-right: 20px; }
+
+/* CENTER TEXT */
+.match-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-align: center;
+  position: relative;
+}
+
+.team-name {
+  font-size: 28px;
+  color: #fff;
+  text-shadow: 0 0 6px rgba(0,0,0,0.6);
+  text-transform: uppercase;
+  font-family: "Mako-Bold";
+}
+
+.team-role {
+  font-size: 14px;
+  font-weight: 700;
+  opacity: 0.8;
+}
+.team-role.def { color: #00e0ff; }
+.team-role.atk { color: #ff4747; }
+
+.vs-icon {
+  font-size: 16px;
+  color: #bbb;
+  opacity: 0.8;
+  letter-spacing: 1px;
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  display: block;
+  margin: 0 10px;
+  opacity: 0.95;
+  filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.6));
+}
+
+/* LINEUP */
+.lineup {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  top: 70px;
+  width: 100%;
+  background: var(--Lower);
+  padding: 12px 0;
+  border: 2px solid rgba(255,255,255,0.1);
+}
+
+.side {
+  display: flex;
+  gap: 50px;
+}
+
+#leftLineup { margin-left: 40px; }
+#rightLineup { margin-right: 40px; }
+
+/* PLAYER CARD */
+.player-card {
+  text-align: center;
+}
+
+/* ------------------------------ */
+/* AGENT IMAGE (Slide-up on change) */
+/* ------------------------------ */
+
+.agent-img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  border-radius: 8px;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Slide animation keyframes */
+@keyframes slideUp {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+.agent-img.slide-up {
+  animation: slideUp 0.25s ease-out;
+}
+
+/* AGENT NAME */
+.agent-name {
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-top: 4px;
+  font-family: "Roboto-Regular";
+  text-shadow: 0 0 6px rgba(0,0,0,0.6);
+}
+
+.agent-name.def { color: var(--Agent-Name-DEF); text-align: left; }
+.agent-name.atk { color: var(--Agent-Name-ATK); text-align: right; }
+
+/* PLAYER NAME */
+.player-name {
+  font-weight: bold;
+  text-shadow: 0 0 5px rgba(0,0,0,0.6);
+  font-family: "Roboto-Regular";
+  text-transform: uppercase;
+}
+.player-name.def { color: #ffffff; text-align: left; }
+.player-name.atk { color: #ffffff; text-align: right; }
+
+/* MAP SECTION */
+.map-section {
+  text-align: center;
+  position: relative;
+}
+.map-image {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  opacity: 0.9;
+}
+.map-name {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 25px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 0 10px black;
+  font-family: "Roboto-Regular";
+}
+
+/* BUTTONS (kept for compatibility but not used) */
+.card-buttons {
+  position: absolute;
+  left: 0;
+  top: calc(70px + 200px);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 40px;
+  box-sizing: border-box;
+  gap: 20px;
+  z-index: 45;
+}
+
+.card-buttons .btn-group {
+  display: flex;
+  gap: 70px;
+  align-items: center;
+}
+
+.card-animate-btn {
+  background: rgba(17, 17, 17, 0.95);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 6px 10px;
+  font-size: 13px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* FETCH BUTTON */
+.fetch-container {
+  position: absolute;
+  bottom: 720px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+}
+
+.fetch-btn {
+  background: #000000;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.2s ease;
+}
+.fetch-btn:active { transform: scale(0.96); }
+.fetch-btn:hover { background: #ff5f6a; }
+
+/* DIAMONDS */
+.diamond-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 6px;
+}
+
+.diamond {
+  width: 10px;
+  height: 10px;
+  transform: rotate(45deg);
+  border: 2px solid white;
+  box-sizing: border-box;
+  transition: all 0.25s ease;
+  opacity: 0.9;
+}
+
+.diamond.filled {
+  background-color: white;
+  border-color: white;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.7);
+}
+
+.team-logo-left,
+.team-logo-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
