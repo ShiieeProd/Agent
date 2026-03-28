@@ -31,6 +31,10 @@ function normalizeRows(gvizRows, expectedCount, expectedCols = 2) {
   return out;
 }
 
+function normalizeAssetName(value) {
+  return value ? String(value).trim().replace(/[^a-zA-Z0-9]/g, "") : "";
+}
+
 // =============================================================
 // FETCH: single-column ranges (returns array of values)
 // used for single cells like C8, C9, D9, E8 etc.
@@ -138,7 +142,7 @@ function createPlayerCard(player, agent, side, index) {
   img.className = "agent-img";
   img.dataset.side = side;
   img.dataset.index = index;
-  const imageName = agent ? agent.trim() : "";
+  const imageName = normalizeAssetName(agent);
   img.src = imageName
     ? `images/agents/${folder}/${imageName}.png`
     : DEFAULT_IMG;
@@ -187,14 +191,17 @@ async function initOverlay() {
     // TEAM LOGOS
     const logoLeft = document.getElementById("teamLogoLeft");
     const logoRight = document.getElementById("teamLogoRight");
-    if (logoLeft) logoLeft.src = `images/teams/${left.teamName.toLowerCase()}.png`;
-    if (logoRight) logoRight.src = `images/teams/${right.teamName.toLowerCase()}.png`;
+    const logoLeftFile = normalizeAssetName(left.teamName);
+    const logoRightFile = normalizeAssetName(right.teamName);
+    if (logoLeft) logoLeft.src = `images/teams/${logoLeftFile}.png`;
+    if (logoRight) logoRight.src = `images/teams/${logoRightFile}.png`;
 
     // MAP INFO
     const mapNameEl = document.getElementById("mapName");
     const mapImageEl = document.getElementById("mapImage");
+    const mapFile = normalizeAssetName(map);
     if (mapNameEl) mapNameEl.textContent = map.toUpperCase();
-    if (mapImageEl) mapImageEl.src = `images/maps/${map.toLowerCase()}.png`;
+    if (mapImageEl) mapImageEl.src = `images/maps/${mapFile}.png`;
 
     // DIAMONDS
     renderDiamonds("diamondLeft", left.status);
@@ -244,14 +251,17 @@ setInterval(async () => {
     // TEAM LOGOS
     const logoLeft = document.getElementById("teamLogoLeft");
     const logoRight = document.getElementById("teamLogoRight");
-    if (logoLeft) logoLeft.src = `images/teams/${left.teamName.toLowerCase()}.png`;
-    if (logoRight) logoRight.src = `images/teams/${right.teamName.toLowerCase()}.png`;
+    const logoLeftFile = normalizeAssetName(left.teamName);
+    const logoRightFile = normalizeAssetName(right.teamName);
+    if (logoLeft) logoLeft.src = `images/teams/${logoLeftFile}.png`;
+    if (logoRight) logoRight.src = `images/teams/${logoRightFile}.png`;
 
     // MAP
     const mapNameEl = document.getElementById("mapName");
     const mapImageEl = document.getElementById("mapImage");
+    const mapFile = normalizeAssetName(map);
     if (mapNameEl) mapNameEl.textContent = map.toUpperCase();
-    if (mapImageEl) mapImageEl.src = `images/maps/${map.toLowerCase()}.png`;
+    if (mapImageEl) mapImageEl.src = `images/maps/${mapFile}.png`;
 
     // DIAMONDS
     renderDiamonds("diamondLeft", left.status);
@@ -272,9 +282,10 @@ setInterval(async () => {
       const data = side === "DEF" ? left.rows[index] : right.rows[index];
 
       const folder = side === "DEF" ? "Left" : "Right";
-      const currentAgent = data ? data.agent : "";
-      const newSrc = currentAgent
-        ? `images/agents/${folder}/${currentAgent.toLowerCase()}.png`
+      const currentAgent = data && data.agent ? data.agent.trim() : "";
+      const currentAgentFile = normalizeAssetName(currentAgent);
+      const newSrc = currentAgentFile
+        ? `images/agents/${folder}/${currentAgentFile}.png`
         : DEFAULT_IMG;
 
       if (img.dataset.lastSrc !== newSrc) {
