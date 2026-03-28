@@ -306,7 +306,7 @@ setInterval(async () => {
   } catch (err) {
     console.error("Auto-refresh error:", err);
   }
-}, 1000); // 1000 ms = 1 second
+}, 500); // 1000 ms = 1 second
 
 // =============================================================
 // START

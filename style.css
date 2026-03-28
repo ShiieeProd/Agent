@@ -56,8 +56,8 @@ body {
   height: 3px;
   width: 50%;
 }
-.header::before { left: 0; background: #00e0ff; }
-.header::after { right: 0; background: #ff4747; }
+.header::before { left: 0; background: #ff4747; }
+.header::after { right: 0; background: #00e0ff; }
 
 /* TEAM LOGOS */
 .team-logo-left img,
@@ -100,8 +100,8 @@ body {
   font-weight: 700;
   opacity: 0.8;
 }
-.team-role.def { color: #00e0ff; }
-.team-role.atk { color: #ff4747; }
+.team-role.def { color: #ff4747; }
+.team-role.atk { color: #00e0ff; }
 
 .vs-icon {
   font-size: 16px;
